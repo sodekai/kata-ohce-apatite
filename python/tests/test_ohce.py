@@ -1,8 +1,14 @@
 import pytest
 from unittest.mock import MagicMock
 
-from ohce.greeter import Greeter
-from ohce.ui import UI
+import sys
+import os
+
+# Add the directory containing the `python` package to the Python path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from python.ohce.greeter import Greeter
+from python.ohce.ui import UI
 
 
 def test_nightly_greeting():
@@ -16,7 +22,10 @@ def test_greeting_never_returns_none():
     Check that for each hour from 0 to 23, the greet()
     method never return None
     """
-    pytest.fail("TODO")
+    system_clock = MagicMock("SystemClock")
+    for hour in range(24):
+        system_clock.current_hour = MagicMock(return_value=hour)
+        assert Greeter(system_clock).greet() is not None
 
 
 def test_ohce_main_loop():
