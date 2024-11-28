@@ -8,8 +8,8 @@ class SystemClock:
 
 
 class Greeter:
-    def __init__(self):
-        self.clock = SystemClock()
+    def __init__(self, system_clock):
+        self.clock = system_clock
 
     def greet(self):
         current_hour = self.clock.current_hour()

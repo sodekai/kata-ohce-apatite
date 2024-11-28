@@ -10,8 +10,8 @@ class ConsoleInteractor:
 
 
 class UI:
-    def __init__(self):
-        self.interactor = ConsoleInteractor()
+    def __init__(self, console_interactor):
+        self.interactor = console_interactor
 
     def main_loop(self):
         while True:
@@ -19,6 +19,8 @@ class UI:
             if input == "quit":
                 break
             reversed = reverse(input)
-            self.interactor.print_message(reversed)
+
             if reversed == input:
                 self.interactor.print_message("That was a palindrome!")
+
+            else : self.interactor.print_message(reversed)
